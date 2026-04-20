@@ -358,7 +358,13 @@ export default function LandingPage() {
                 href="tel:+5541984582666"
                 className="mt-5 inline-block text-base font-semibold text-red-600 underline"
               >
-                (41) 98458-2666
+                Celular / WhatsApp: (41) 98458-2666
+              </a>
+              <a
+                href="tel:+554134234337"
+                className="mt-2 inline-block text-base font-semibold text-red-600 underline"
+              >
+                Telefone fixo: (41) 3423-4337
               </a>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <a

@@ -16,6 +16,22 @@ const localBusinessSchema = {
     addressCountry: "BR",
   },
   telephone: "+55 41 98458-2666",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+55 41 98458-2666",
+      contactType: "customer service",
+      areaServed: "BR",
+      availableLanguage: "pt-BR",
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: "+55 41 3423-4337",
+      contactType: "customer service",
+      areaServed: "BR",
+      availableLanguage: "pt-BR",
+    },
+  ],
   url: "https://funemon.com.br",
   sameAs: ["https://wa.me/5541984582666"],
 };
