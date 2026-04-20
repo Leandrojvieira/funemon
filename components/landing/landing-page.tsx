@@ -38,7 +38,51 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
-const sectionClass = "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8";
+const sectionClass = "mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10";
+
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  centered = false,
+  light = false,
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  centered?: boolean;
+  light?: boolean;
+}) {
+  return (
+    <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      {eyebrow ? (
+        <p
+          className={`text-xs font-semibold uppercase tracking-[0.16em] ${
+            light ? "text-sky-300" : "text-sky-700"
+          }`}
+        >
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2
+        className={`mt-2 text-3xl font-bold tracking-tight sm:text-4xl ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
+        {title}
+      </h2>
+      {description ? (
+        <p
+          className={`mt-4 text-base leading-relaxed sm:text-lg ${
+            light ? "text-slate-200" : "text-slate-600"
+          }`}
+        >
+          {description}
+        </p>
+      ) : null}
+    </div>
+  );
+}
 
 function getWhatsAppUrl(origin: string) {
   if (typeof window === "undefined") {
@@ -109,7 +153,7 @@ export default function LandingPage() {
             />
           </div>
           <div className="relative border-b border-white/10">
-            <div className={`${sectionClass} py-20 sm:py-24 lg:py-28`}>
+            <div className={`${sectionClass} py-24 sm:py-28 lg:py-36`}>
               <motion.div
                 initial="hidden"
                 whileInView="show"
@@ -118,17 +162,17 @@ export default function LandingPage() {
                 variants={fadeUp}
                 className="max-w-3xl"
               >
-                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.15em] text-sky-300">
+                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-sky-300">
                   Empresa de calhas em Paranaguá
                 </p>
-                <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+                <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
                   Calhas em Paranaguá com Instalação Profissional e Garantia
                 </h1>
-                <p className="mt-5 text-base text-slate-100 sm:text-lg">
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-100 sm:text-xl">
                   Mais de 45 anos atendendo Paranaguá e todo o litoral com
                   soluções completas em calhas, rufos e serralheria.
                 </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                   <motion.a
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
@@ -136,13 +180,13 @@ export default function LandingPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick("hero")}
-                    className="inline-flex items-center justify-center rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-500"
+                    className="inline-flex items-center justify-center rounded-full bg-red-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-900/30 transition hover:bg-red-500"
                   >
                     Solicitar Orçamento no WhatsApp
                   </motion.a>
                   <a
                     href="#servicos"
-                    className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    className="inline-flex items-center justify-center rounded-full border border-white/40 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
                   >
                     Ver Serviços
                   </a>
@@ -152,13 +196,13 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="autoridade" className={`${sectionClass} py-14`}>
+        <section id="autoridade" className={`${sectionClass} py-18 sm:py-20`}>
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             transition={{ staggerChildren: 0.12 }}
-            className="grid gap-4 md:grid-cols-3"
+            className="grid gap-5 md:grid-cols-3"
           >
             {[
               { title: "+45 anos", text: "de experiência em funilaria técnica" },
@@ -168,16 +212,20 @@ export default function LandingPage() {
               <motion.article
                 key={item.title}
                 variants={fadeUp}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
               >
-                <p className="text-2xl font-bold text-sky-800">{item.title}</p>
-                <p className="mt-1 text-sm text-slate-600">{item.text}</p>
+                <p className="text-3xl font-bold tracking-tight text-sky-800">
+                  {item.title}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  {item.text}
+                </p>
               </motion.article>
             ))}
           </motion.div>
         </section>
 
-        <section id="servicos" className="bg-slate-50 py-16">
+        <section id="servicos" className="bg-slate-50 py-20 sm:py-24">
           <div className={sectionClass}>
             <motion.div
               initial="hidden"
@@ -186,15 +234,13 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               variants={fadeUp}
             >
-              <h2 className="text-2xl font-bold sm:text-3xl">
-                Serviços de funilaria e serralheria em Paranaguá
-              </h2>
-              <p className="mt-2 max-w-3xl text-slate-600">
-                Atuamos com instalação de calhas, conserto de calhas, rufos para
-                telhado e serralheria sob medida, focando durabilidade e acabamento.
-              </p>
+              <SectionHeading
+                eyebrow="Soluções completas"
+                title="Serviços de funilaria e serralheria em Paranaguá"
+                description="Atuamos com instalação de calhas, conserto de calhas, rufos para telhado e serralheria sob medida, focando durabilidade e acabamento premium."
+              />
             </motion.div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (
                 <motion.article
                   key={service}
@@ -204,13 +250,13 @@ export default function LandingPage() {
                   transition={{ duration: 0.35 }}
                   variants={fadeUp}
                   whileHover={{ y: -4 }}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition"
+                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
                 >
-                  <p className="font-semibold">{service}</p>
+                  <p className="text-base font-semibold tracking-tight">{service}</p>
                 </motion.article>
               ))}
             </div>
-            <div className="mt-8 rounded-2xl border border-sky-100 bg-sky-50 p-5">
+            <div className="mt-8 rounded-2xl border border-sky-100 bg-sky-50 p-6">
               <p className="text-sm font-semibold uppercase tracking-wide text-sky-900">
                 Materiais de alta resistência
               </p>
@@ -228,7 +274,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="diferenciais" className={`${sectionClass} py-16`}>
+        <section id="diferenciais" className={`${sectionClass} py-20 sm:py-24`}>
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -237,10 +283,11 @@ export default function LandingPage() {
             variants={fadeUp}
             className="max-w-3xl"
           >
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              Por que escolher a Funemon?
-            </h2>
-            <div className="mt-6 space-y-3 text-slate-700">
+            <SectionHeading
+              eyebrow="Diferenciais reais"
+              title="Por que escolher a Funemon?"
+            />
+            <div className="mt-8 space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
               <p>
                 Mais de 45 anos em Paranaguá entregando segurança em cada
                 instalação de calhas e rufos para telhado.
@@ -257,16 +304,19 @@ export default function LandingPage() {
           </motion.div>
         </section>
 
-        <section id="galeria" className="bg-slate-950 py-16 text-white">
+        <section id="galeria" className="bg-slate-950 py-20 text-white sm:py-24">
           <div className={sectionClass}>
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              Trabalhos reais em Paranaguá e litoral
-            </h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <SectionHeading
+              eyebrow="Prova visual"
+              title="Trabalhos reais em Paranaguá e litoral"
+              description="Execuções com acabamento técnico, precisão de medida e durabilidade para cada tipo de telhado."
+              light
+            />
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {gallery.map((item) => (
                 <div
                   key={item.src}
-                  className="group relative overflow-hidden rounded-2xl"
+                  className="group relative overflow-hidden rounded-2xl border border-white/10"
                 >
                   <Image
                     src={item.src}
@@ -276,7 +326,7 @@ export default function LandingPage() {
                     loading="lazy"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     quality={78}
-                    className="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
+                    className="h-72 w-full object-cover transition duration-300 group-hover:scale-105"
                   />
                 </div>
               ))}
@@ -284,18 +334,16 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="cobertura" className={`${sectionClass} py-16`}>
-          <h2 className="text-2xl font-bold sm:text-3xl">
-            Atendimento em Paranaguá e Litoral
-          </h2>
-          <p className="mt-3 max-w-3xl text-slate-700">
-            Atendemos Paranaguá, Antonina, Morretes e todo o litoral com
-            instalação e manutenção de calhas, rufos e serviços de serralheria.
-          </p>
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 p-5">
+        <section id="cobertura" className={`${sectionClass} py-20 sm:py-24`}>
+          <SectionHeading
+            eyebrow="SEO local"
+            title="Atendimento em Paranaguá e Litoral"
+            description="Atendemos Paranaguá, Antonina, Morretes e todo o litoral com instalação e manutenção de calhas, rufos e serviços de serralheria."
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
               <p className="font-semibold">Funilaria Funemon</p>
-              <p className="mt-2 text-slate-700">
+              <p className="mt-3 leading-relaxed text-slate-700">
                 Ao lado da Ortodontia Lider
                 <br />
                 Av. Pref. Dr. Roque Vernalha, 1703 - Vila Cruzeiro
@@ -304,7 +352,7 @@ export default function LandingPage() {
               </p>
               <a
                 href="tel:+5541984582666"
-                className="mt-4 inline-block text-red-600 underline"
+                className="mt-5 inline-block text-base font-semibold text-red-600 underline"
               >
                 (41) 98458-2666
               </a>
@@ -313,7 +361,7 @@ export default function LandingPage() {
               <iframe
                 title="Mapa Funemon Paranaguá"
                 src="https://www.google.com/maps?q=Av.%20Pref.%20Dr.%20Roque%20Vernalha,%201703%20-%20Vila%20Cruzeiro,%20Paranagu%C3%A1%20-%20PR&output=embed"
-                className="h-[280px] w-full"
+                className="h-[320px] w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
@@ -321,12 +369,12 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="contato" className="bg-sky-900 py-16 text-white">
+        <section id="contato" className="bg-sky-900 py-20 text-white sm:py-24">
           <div className={`${sectionClass} text-center`}>
-            <h2 className="text-2xl font-bold sm:text-3xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Precisa de calhas em Paranaguá?
             </h2>
-            <p className="mt-3 text-sky-100">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-sky-100 sm:text-lg">
               Solicite agora seu orçamento rápido pelo WhatsApp.
             </p>
             <motion.a
@@ -336,7 +384,7 @@ export default function LandingPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick("cta_final")}
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-red-600 px-7 py-3 font-semibold text-white transition hover:bg-red-500"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-3.5 font-semibold text-white shadow-lg shadow-slate-950/25 transition hover:bg-red-500"
             >
               Falar no WhatsApp
             </motion.a>
@@ -344,8 +392,8 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="bg-slate-950 py-8 text-sm text-slate-200">
-        <div className={`${sectionClass} flex flex-col gap-2 sm:flex-row sm:justify-between`}>
+      <footer className="bg-slate-950 py-10 text-sm text-slate-200">
+        <div className={`${sectionClass} flex flex-col gap-3 sm:flex-row sm:justify-between`}>
           <p>
             Funilaria Funemon - calhas em Paranaguá, instalação de calhas, conserto
             de calhas, rufos para telhado e serralheria em Paranaguá.
@@ -370,7 +418,7 @@ export default function LandingPage() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackWhatsAppClick("botao_flutuante")}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center rounded-full bg-red-600 px-5 py-3 text-sm font-semibold text-white shadow-xl transition hover:bg-red-500"
+        className="fixed bottom-5 right-5 z-50 inline-flex items-center rounded-full bg-red-600 px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-red-900/40 transition hover:bg-red-500"
       >
         WhatsApp
       </motion.a>
