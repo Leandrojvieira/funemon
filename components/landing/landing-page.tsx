@@ -4,6 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const whatsappBaseUrl = "https://wa.me/5541984582666";
+const googleMapsRouteUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=Funilaria+Funemon+Calhas,+Paranagu%C3%A1+-+PR";
+const wazeRouteUrl =
+  "https://waze.com/ul?ll=-25.5217149,-48.5331535&navigate=yes";
 const services = [
   "Instalação de calhas",
   "Conserto de calhas",
@@ -356,11 +360,29 @@ export default function LandingPage() {
               >
                 (41) 98458-2666
               </a>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={googleMapsRouteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-sky-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-600"
+                >
+                  Como chegar no Google Maps
+                </a>
+                <a
+                  href={wazeRouteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                >
+                  Como chegar no Waze
+                </a>
+              </div>
             </div>
             <div className="overflow-hidden rounded-2xl border border-slate-200">
               <iframe
                 title="Mapa Funemon Paranaguá"
-                src="https://www.google.com/maps?q=Av.%20Pref.%20Dr.%20Roque%20Vernalha,%201703%20-%20Vila%20Cruzeiro,%20Paranagu%C3%A1%20-%20PR&output=embed"
+                src="https://www.google.com/maps?q=Funilaria%20Funemon%20Calhas%2C%20Paranagu%C3%A1&output=embed"
                 className="h-[320px] w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
