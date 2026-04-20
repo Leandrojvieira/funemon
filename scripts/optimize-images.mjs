@@ -5,27 +5,49 @@ import sharp from "sharp";
 const inputDir = path.join(process.cwd(), "public", "images", "raw");
 const outputDir = path.join(process.cwd(), "public", "images");
 
+const inputExtensions = [".jpg", ".jpeg", ".png", ".webp"];
 const targets = [
-  { input: "hero-funemon.jpg", output: "hero-funemon.webp", width: 1920 },
-  { input: "calha-paranagua.jpg", output: "calha-paranagua.webp", width: 1200 },
-  { input: "rufos-litoral.jpg", output: "rufos-litoral.webp", width: 1200 },
+  { inputBaseName: "hero-funemon", output: "hero-funemon.webp", width: 1920 },
   {
-    input: "serralheria-paranagua.jpg",
+    inputBaseName: "calha-paranagua",
+    output: "calha-paranagua.webp",
+    width: 1200,
+  },
+  { inputBaseName: "rufos-litoral", output: "rufos-litoral.webp", width: 1200 },
+  {
+    inputBaseName: "serralheria-paranagua",
     output: "serralheria-paranagua.webp",
     width: 1200,
   },
-  { input: "og-funemon.jpg", output: "og-funemon.webp", width: 1200, height: 630 },
+  {
+    inputBaseName: "og-funemon",
+    output: "og-funemon.webp",
+    width: 1200,
+    height: 630,
+  },
 ];
+
+function resolveInputFile(files, inputBaseName) {
+  const normalizedMap = new Map(files.map((file) => [file.toLowerCase(), file]));
+
+  for (const extension of inputExtensions) {
+    const candidate = `${inputBaseName}${extension}`;
+    const found = normalizedMap.get(candidate.toLowerCase());
+    if (found) return found;
+  }
+
+  return null;
+}
 
 async function ensureInputExists() {
   const files = await readdir(inputDir);
   const missing = targets
-    .map((target) => target.input)
-    .filter((file) => !files.includes(file));
+    .map((target) => target.inputBaseName)
+    .filter((baseName) => !resolveInputFile(files, baseName));
 
   if (missing.length > 0) {
     throw new Error(
-      `Arquivos ausentes em public/images/raw: ${missing.join(", ")}`
+      `Arquivos ausentes em public/images/raw (aceita .jpg/.jpeg/.png/.webp): ${missing.join(", ")}`
     );
   }
 }
@@ -33,10 +55,16 @@ async function ensureInputExists() {
 async function optimize() {
   await mkdir(outputDir, { recursive: true });
   await ensureInputExists();
+  const files = await readdir(inputDir);
 
   await Promise.all(
     targets.map(async (target) => {
-      const inputPath = path.join(inputDir, target.input);
+      const sourceFile = resolveInputFile(files, target.inputBaseName);
+      if (!sourceFile) {
+        throw new Error(`Nao foi possivel localizar o arquivo base ${target.inputBaseName}`);
+      }
+
+      const inputPath = path.join(inputDir, sourceFile);
       const outputPath = path.join(outputDir, target.output);
 
       const baseImage = sharp(inputPath).resize({
