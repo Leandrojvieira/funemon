@@ -7,7 +7,7 @@ const whatsappBaseUrl = "https://wa.me/5541984582666";
 const googleMapsRouteUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Funilaria+Funemon+Calhas,+Paranagu%C3%A1+-+PR";
 const wazeRouteUrl =
-  "https://waze.com/ul?ll=-25.5217149,-48.5331535&navigate=yes";
+  "https://waze.com/ul?ll=-25.522228,-48.5326275&navigate=yes";
 const services = [
   "Instalação de calhas",
   "Conserto de calhas",
@@ -382,7 +382,7 @@ export default function LandingPage() {
             <div className="overflow-hidden rounded-2xl border border-slate-200">
               <iframe
                 title="Mapa Funemon Paranaguá"
-                src="https://www.google.com/maps?q=Funilaria%20Funemon%20Calhas%2C%20Paranagu%C3%A1&output=embed"
+                src="https://www.google.com/maps?q=-25.522228,-48.5326275&z=21&output=embed"
                 className="h-[320px] w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
