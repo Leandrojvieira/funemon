@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://funemon.com.br"),
+  metadataBase: new URL("https://www.funemoncalhas.com.br"),
   title: "Calhas em Paranaguá | Funemon Funilaria",
   description:
     "Empresa de calhas em Paranaguá com mais de 45 anos. Instalação, manutenção, rufos e serralheria em todo o litoral.",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Calhas em Paranaguá | Funemon Funilaria",
     description:
       "Soluções completas em calhas, rufos, coifas e serralheria sob medida no litoral do Paraná.",
-    url: "https://funemon.com.br",
+    url: "https://www.funemoncalhas.com.br",
     siteName: "Funilaria Funemon",
     locale: "pt_BR",
     type: "website",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://funemon.com.br",
+    canonical: "https://www.funemoncalhas.com.br",
   },
 };
 

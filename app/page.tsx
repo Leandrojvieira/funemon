@@ -32,7 +32,7 @@ const localBusinessSchema = {
       availableLanguage: "pt-BR",
     },
   ],
-  url: "https://funemon.com.br",
+  url: "https://www.funemoncalhas.com.br",
   sameAs: ["https://wa.me/5541984582666"],
 };
 

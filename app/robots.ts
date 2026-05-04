@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://funemon.com.br/sitemap.xml",
-    host: "https://funemon.com.br",
+    sitemap: "https://www.funemoncalhas.com.br/sitemap.xml",
+    host: "https://www.funemoncalhas.com.br",
   };
 }
